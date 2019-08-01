@@ -1,0 +1,29 @@
+.registerForm{
+  display: grid;
+  justify-content: center;
+}
+.registerName{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 160%;
+  justify-content: center;
+  margin-left: 5%;
+}
+.registerCard{
+    width: 36%;
+    justify-content: center;
+}
+.registerButton{
+  margin-top: 5%;
+  margin-bottom: 8%;
+  justify-content: space-between;
+}
+.registerMainDiv{
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+.loginLink{
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 23%;
+  font-size: 113%;
+}
