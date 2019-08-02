@@ -1,8 +1,10 @@
-import { registration } from '../services/user.services';
+import { registration, userLogin } from '../services/user.services';
 import { userConstant } from '../user.constants';
 
 export const userActions = {
-    register
+    login,
+    register,
+    logout
 }
 
 function register(user) {
@@ -11,7 +13,7 @@ function register(user) {
         registration(user)
             .then(
                 user => {
-                    dispatch(success())
+                    dispatch(success(user))
                 },
                 error => {
                     dispatch(failure(error.toString()))
@@ -34,5 +36,44 @@ function register(user) {
         return{
             type : userConstant.REGISTER_FAILURE,user
         }
+    }
+}
+
+function login(user) {
+    return dispatch => {
+        dispatch(request(user));
+        userLogin(user)
+            .then(
+                user => {
+                    localStorage.setItem('user',JSON.stringify(user))
+                    dispatch(success(user))
+                },
+                error => {
+                    dispatch(failure(error.toString()))
+                }
+            )
+    };
+    function request(user) {
+        return{
+            type : userConstant.LOGIN_REQUEST,user
+        }
+    }
+
+    function success(user) {
+        return{
+            type : userConstant.LOGIN_SUCCESS,user
+        }
+    }
+
+    function failure(user) {
+        return{
+            type : userConstant.LOGIN_FAILURE,user
+        }
+    }
+}
+function logout(){
+    logout();
+    return{
+        type : userConstant.LOGOUT
     }
 }
